@@ -6,8 +6,8 @@ exports.regUser = (req, res) => {
   // 接收表单数据
   const userinfo = req.body
   // 判断数据是否合法
-  if(!userinfo.username || !userinfo.password) {
-    return res.send({ status: 1, message: '用户名或密码不能为空' })
+  if(!userinfo.username || !userinfo.password || !userinfo.age) {
+    return res.send({ status: 1, message: '用户名,密码或年龄不能为空' })
   }
   // 判断用户名是否被占用
   const sql = `select * from user where username=?`
@@ -18,7 +18,7 @@ exports.regUser = (req, res) => {
     }
     // 被占用
     if(results.length > 0){
-      return res.send({ status: 1, message: '用户名已被使用，请更换！' })
+      return res.send({ status: 2, message: '用户名已被使用，请更换！' })
     }
     // 插入新用户
     const sql = 'insert into user set ?'

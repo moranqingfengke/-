@@ -6,7 +6,7 @@ exports.addbook = (req, res) => {
   // 接收表单数据
   const bookinfo = req.body
   const sql = 'insert into books set ?'
-  db.query(sql, { bookname: bookinfo.bookname, bookauthor: bookinfo.bookauthor, bookaddress: bookinfo.bookaddress, bookprice: bookinfo.bookprice }, function(err, results){
+  db.query(sql, { bookname: bookinfo.bookname, bookauthor: bookinfo.bookauthor, bookaddress: bookinfo.bookaddress, bookprice: bookinfo.bookprice, bookdetail: bookinfo.bookdetail }, function(err, results){
     if(err){
       return res.send({ status: 1, message: err.message })
     }else{
