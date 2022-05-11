@@ -56,3 +56,29 @@ exports.returnbook = (req, res) => {
     })
   })
 }
+
+// 查询特定用户的带归还图书
+exports.getrebook = (req, res) => {
+  // 接收表单数据
+  const borrowinfo = req.body
+  const sql = `select * from borrow where username=?`
+  db.query(sql, borrowinfo.username, function(err, results) {
+    if(err){
+      return res.send({ status: 1, message: err.message })
+    }else{
+      return res.send({ status: 0, message: results })
+    }
+  })
+}
+
+// 查询所有用户与待归还图书
+exports.getallrebook = (req, res) => {
+  const sql = `select * from borrow`
+  db.query(sql, function(err, results) {
+    if(err){
+      return res.send({ status: 1, message: err.message })
+    }else{
+      return res.send({ status: 0, message: results })
+    }
+  })
+}
