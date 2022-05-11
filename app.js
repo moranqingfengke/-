@@ -8,6 +8,8 @@ const userRouter = require('./router/user.js')
 const bookRouter = require('./router/book.js')
 // 导入需求模块
 const needRouter = require('./router/need.js')
+// 导入借阅模块
+const borrowRouter = require('./router/borrow.js')
 
 // 创建 express 实例
 const app = express()
@@ -24,6 +26,8 @@ app.use('/api',userRouter)
 app.use('/book',bookRouter)
 // 注册需求模块
 app.use('/need',needRouter)
+// 注册借阅模块
+app.use('/borrow',borrowRouter)
 
 app.listen(3007, function () {
   console.log('api server running at http://127.0.0.1:3007')

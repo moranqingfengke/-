@@ -22,7 +22,7 @@ exports.regUser = (req, res) => {
     }
     // 插入新用户
     const sql = 'insert into user set ?'
-    db.query(sql, { username: userinfo.username, password: userinfo.password, age: userinfo.age }, function(err, results) {
+    db.query(sql, { username: userinfo.username, password: userinfo.password, age: userinfo.age, userstate: 0 }, function(err, results) {
       // 执行sql语句失败
       if(err){
         return res.send({ status: 1, message: err.message })
